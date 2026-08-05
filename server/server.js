@@ -1,7 +1,5 @@
-const dns = require('dns');
-dns.setServers(['8.8.8.8', '1.1.1.1']);
-const PORT = process.env.PORT || 5000;
-
+const dns = require('dns')
+dns.setServers(['8.8.8.8', '1.1.1.1'])
 
 const express = require('express')
 const mongoose = require('mongoose')
@@ -20,7 +18,9 @@ app.use(cors({
         "https://rateit-mern.netlify.app"
     ],
     credentials: true
-}))app.use(express.json())
+}))
+
+app.use(express.json())
 
 // Health check
 app.get('/api/health', (req, res) => {
@@ -38,6 +38,6 @@ mongoose.connect(process.env.MONGO_URI)
 .then(() => console.log("✅ MongoDB connected!"))
 .catch(err => console.log("❌ MongoDB Error:", err))
 
-app.listen(PORT, () => {
-    console.log(`✅ Server running on port ${PORT}`)
+app.listen(process.env.PORT || 5000, () => {
+    console.log(`✅ Server running on port ${process.env.PORT || 5000}`)
 })
